@@ -15,27 +15,17 @@ import androidx.compose.ui.unit.sp
 import pl.put.bugfarm.domain.Speciment
 
 @Composable
-fun SpecimentListScreen(
+fun SpecimentAddScreen(
 		onStateChange: (String)->Unit,
-		specimentList: List<Speciment> = listOf<Speciment>()
 					   )
 {
 	Scaffold(
-			floatingActionButtonPosition = FabPosition.End,
-			floatingActionButton = {
-				FloatingActionButton(
-						content = { Image(
-									painter = painterResource(id = pl.put.bugfarm.R.drawable.ic_baseline_add_24),
-									contentDescription = "add_new_speciment_button",
-									modifier = Modifier
-											.height(24.dp)
-											.width(24.dp)
-								 ) },
-						onClick = { addNewSpeciment()
-							onStateChange(SpecimentDestinations.ADD)
-						}
-											)
-			},
+			bottomBar = { BottomAppBar(backgroundColor = MaterialTheme.colors.surface) {
+				TextButton(onClick = {onStateChange(SpecimentDestinations.INFO)}) { Text(text = "back")}
+				TextButton(onClick = {  }) { Text(text = "add")
+
+				}
+			}}
 			) {
 		Column(
 				modifier = Modifier
@@ -46,17 +36,14 @@ fun SpecimentListScreen(
 
 			  ) {
 			Text(
-					text = "Speciment List View",
+					text = "Speciment Add View",
 					fontWeight = FontWeight.Bold,
 					color = MaterialTheme.colors.onSurface,
 					modifier = Modifier.align(Alignment.CenterHorizontally),
 					textAlign = TextAlign.Center,
 					fontSize = 25.sp
 				)
+
 		}
 	}
-}
-
-fun addNewSpeciment(){
-
 }

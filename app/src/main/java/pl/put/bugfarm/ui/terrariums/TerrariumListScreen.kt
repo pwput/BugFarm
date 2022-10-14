@@ -10,15 +10,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import pl.put.bugfarm.R
 import pl.put.bugfarm.domain.Speciment
-import pl.put.bugfarm.ui.speciments.addNewSpeciment
 
 @Composable
 fun TerrariumListScreen(
+		onStateChange: (String) -> Unit,
 		terrariumList: List<Speciment> = listOf<Speciment>()
 					   )
 {
@@ -33,7 +32,9 @@ fun TerrariumListScreen(
 										.height(24.dp)
 										.width(24.dp)
 									  ) },
-						onClick = { addNewTerrarium() }
+						onClick = {
+							onStateChange(TerrariumDestinations.ADD)
+							addNewTerrarium() }
 											)
 			},
 			) {
@@ -63,9 +64,3 @@ fun addNewTerrarium(){
 }
 
 
-@Preview(showSystemUi = true, showBackground = true)
-@Composable
-fun TerrariumListScreenPreview()
-{
-	TerrariumListScreen()
-}
