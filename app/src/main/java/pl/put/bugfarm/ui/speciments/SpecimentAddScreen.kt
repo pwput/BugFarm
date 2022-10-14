@@ -19,14 +19,7 @@ fun SpecimentAddScreen(
 		onStateChange: (String)->Unit,
 					   )
 {
-	Scaffold(
-			bottomBar = { BottomAppBar(backgroundColor = MaterialTheme.colors.surface) {
-				TextButton(onClick = {onStateChange(SpecimentDestinations.INFO)}) { Text(text = "back")}
-				TextButton(onClick = {  }) { Text(text = "add")
-
-				}
-			}}
-			) {
+	Scaffold {
 		Column(
 				modifier = Modifier
 						.fillMaxSize()
@@ -43,7 +36,10 @@ fun SpecimentAddScreen(
 					textAlign = TextAlign.Center,
 					fontSize = 25.sp
 				)
-
+			Row(modifier = Modifier.background(MaterialTheme.colors.surface)) {
+				TextButton(onClick = {onStateChange(SpecimentDestinations.LIST)}) { Text(text = "back")}
+				TextButton(onClick = {  }) { Text(text = "add") }
+			}
 		}
 	}
 }
