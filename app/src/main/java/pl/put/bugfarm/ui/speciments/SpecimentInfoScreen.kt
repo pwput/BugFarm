@@ -16,26 +16,26 @@ import pl.put.bugfarm.domain.Speciment
 
 @Composable
 fun SpecimentInfoScreen(
-		onStateChange: (String)->Unit,
-					   )
-{
-	Scaffold{
-		Column(
-				modifier = Modifier
-						.fillMaxSize()
-						.background(MaterialTheme.colors.surface)
-						.wrapContentSize(Alignment.Center)
-						.padding(it)
+    onChangeClick: () -> Unit,
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colors.surface)
+            .wrapContentSize(Alignment.Center)
+            .padding(16.dp)
 
-			  ) {
-			Text(
-					text = "Speciment Info View",
-					fontWeight = FontWeight.Bold,
-					color = MaterialTheme.colors.onSurface,
-					modifier = Modifier.align(Alignment.CenterHorizontally),
-					textAlign = TextAlign.Center,
-					fontSize = 25.sp
-				)
-		}
-	}
+    ) {
+        Text(
+            text = "Speciment Info View",
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colors.onSurface,
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            textAlign = TextAlign.Center,
+            fontSize = 25.sp
+        )
+        TextButton(onClick = onChangeClick) {
+            Text(text = "OK")
+        }
+    }
 }

@@ -16,30 +16,23 @@ import pl.put.bugfarm.domain.Speciment
 
 @Composable
 fun SpecimentAddScreen(
-		onStateChange: (String)->Unit,
-					   )
-{
-	Scaffold {
-		Column(
-				modifier = Modifier
-						.fillMaxSize()
-						.background(MaterialTheme.colors.surface)
-						.wrapContentSize(Alignment.Center)
-						.padding(it)
+    onAddClick: () -> Unit,
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colors.surface)
+            .wrapContentSize(Alignment.Center)
+            .padding(16.dp)
 
-			  ) {
-			Text(
-					text = "Speciment Add View",
-					fontWeight = FontWeight.Bold,
-					color = MaterialTheme.colors.onSurface,
-					modifier = Modifier.align(Alignment.CenterHorizontally),
-					textAlign = TextAlign.Center,
-					fontSize = 25.sp
-				)
-			Row(modifier = Modifier.background(MaterialTheme.colors.surface)) {
-				TextButton(onClick = {onStateChange(SpecimentDestinations.LIST)}) { Text(text = "back")}
-				TextButton(onClick = {  }) { Text(text = "add") }
-			}
-		}
-	}
+    ) {
+        Text(
+            text = "Speciment Add View",
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colors.onSurface,
+            textAlign = TextAlign.Center,
+            fontSize = 25.sp
+        )
+        TextButton(onClick = { onAddClick() }) { Text(text = "add speciment") }
+    }
 }

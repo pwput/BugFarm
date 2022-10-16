@@ -25,17 +25,14 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun LoginScreen(
-    onLogInClick: () -> Unit,
-    onSignUpClick: () -> Unit
+fun SignUpScreen(
 ) {
     val focusManager = LocalFocusManager.current
     Surface(modifier = Modifier
         .fillMaxSize()
         .clickable(
             indication = null,
-            interactionSource = remember { MutableInteractionSource() }
-        ) { focusManager.clearFocus() }) {
+            interactionSource = remember { MutableInteractionSource() }) { focusManager.clearFocus() }) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -52,17 +49,18 @@ fun LoginScreen(
                 .padding(16.dp)
                 .align(Alignment.CenterHorizontally)
             Text(
-                text = message.value, modifier = Modifier
+                text = message.value,
+                modifier = Modifier
                     .padding(8.dp)
-                    .align(Alignment.CenterHorizontally), color = Color.Red
+                    .align(Alignment.CenterHorizontally),
+                color = Color.Red
             )
             TextField(
                 modifier = modif,
                 value = loginTextState.value,
                 onValueChange = { loginTextState.value = it },
                 keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Password,
-                    imeAction = ImeAction.Done
+                    keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
                 ),
                 keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
                 label = { Text(text = "login") },
@@ -74,31 +72,15 @@ fun LoginScreen(
                 onValueChange = { passwordTextState.value = it },
                 label = { Text(text = "password") },
                 keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Password,
-                    imeAction = ImeAction.Done
+                    keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
                 ),
                 keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
                 singleLine = true,
                 visualTransformation = PasswordVisualTransformation()
             )
-            TextButton(onClick = {
-                message.value = ""
-                if (onloginButtonClick(loginTextState.value.text, passwordTextState.value.text)) {
-                    onLogInClick.invoke()
-                } else
-                    message.value = "Podaj prowidłowy login i hasło"
-            }, modifier = modif) {
-                Text(text = "Login")
-            }
 
         }
     }
 
 }
 
-fun onloginButtonClick(login: String, password: String): Boolean {
-    Log.d("Login", "$login, $password")
-    if (login == "11" && password == "1111")
-        return true
-    return false
-}
