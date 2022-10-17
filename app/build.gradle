@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jlleitschuh.gradle.ktlint'
 }
 
 android {
@@ -62,6 +63,10 @@ dependencies {
     implementation "androidx.activity:activity-compose:$rootProject.activityComposeVersion"
     implementation "androidx.navigation:navigation-compose:$rootProject.composeNavigationVersion"
     testImplementation 'junit:junit:4.12'
+
+    //Room database
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 
     implementation "com.google.accompanist:accompanist-pager:0.25.0" // Pager
     implementation "com.google.accompanist:accompanist-pager-indicators:0.25.0" // Pager Indicators
