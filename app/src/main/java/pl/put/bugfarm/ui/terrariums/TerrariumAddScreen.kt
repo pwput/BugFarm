@@ -14,10 +14,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import pl.put.bugfarm.ui.BottomBar
+import pl.put.bugfarm.ui.speciments.SpecimentInfoScreen
+import pl.put.bugfarm.ui.theme.BugfarmTheme
 
 @Composable
 fun TerrariumAddScreen(
@@ -26,9 +29,9 @@ fun TerrariumAddScreen(
 	Scaffold{
 	Column(
 			modifier = Modifier
-					.background(MaterialTheme.colors.surface)
-					.wrapContentSize(Alignment.Center)
-					.padding(it)
+				.background(MaterialTheme.colors.surface)
+				.wrapContentSize(Alignment.Center)
+				.padding(it)
 
 		  ) {
 		Text(
@@ -44,6 +47,11 @@ fun TerrariumAddScreen(
 }
 }
 
-		fun addTerrarium(){
-
+@Preview(showSystemUi = true)
+@Composable
+fun TerrariumAddScreenPreview(){
+	BugfarmTheme() {
+		TerrariumAddScreen {
 		}
+	}
+}

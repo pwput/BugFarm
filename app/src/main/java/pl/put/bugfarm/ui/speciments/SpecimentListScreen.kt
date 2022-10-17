@@ -19,6 +19,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import pl.put.bugfarm.domain.Speciment
 import pl.put.bugfarm.ui.BottomBar
+import pl.put.bugfarm.ui.theme.BugfarmTheme
 
 @Composable
 fun SpecimentListScreen(
@@ -59,17 +60,16 @@ fun SpecimentListScreen(
             textAlign = TextAlign.Center,
             fontSize = 25.sp
         )
+        OutlinedButton(onClick = { onInfoClick(Speciment()) }) {
+            Text(text = "Info")
+        }
     }
 }
 
-
-fun addNewSpeciment() {
-
-}
-
-@Preview
+@Preview(showSystemUi = true)
 @Composable
 fun ListPreview() {
-//	val state = remember{ mutableStateOf(SpecimentDestinations.LIST) }
-//	SpecimentListScreen(onStateChange = {state.value = it})
+    BugfarmTheme() {
+    SpecimentListScreen(onInfoClick = {}, onAddClick = { /*TODO*/ })
+    }
 }

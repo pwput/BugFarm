@@ -11,16 +11,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import pl.put.bugfarm.ui.theme.BugfarmTheme
 
 @Composable
 fun FarmScreen()
 {
 	Column(
 			modifier = Modifier
-					.fillMaxSize()
-					.background(MaterialTheme.colors.surface)
-					.wrapContentSize(Alignment.Center)
+				.fillMaxSize()
+				.background(MaterialTheme.colors.surface)
+				.wrapContentSize(Alignment.Center)
 
 		  ) {
 		Text(
@@ -31,5 +33,13 @@ fun FarmScreen()
 				textAlign = TextAlign.Center,
 				fontSize = 25.sp
 			)
+	}
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun FarmScreenPreview(){
+	BugfarmTheme {
+		FarmScreen()
 	}
 }

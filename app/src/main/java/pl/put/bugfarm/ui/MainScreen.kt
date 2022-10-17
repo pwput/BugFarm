@@ -1,6 +1,7 @@
 package pl.put.bugfarm.ui
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
@@ -8,6 +9,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -16,15 +18,18 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import pl.put.bugfarm.graphs.HomeNavGraph
 import pl.put.bugfarm.ui.components.BottomBarScreen
+import pl.put.bugfarm.ui.speciments.SpecimentInfoScreen
+import pl.put.bugfarm.ui.theme.BugfarmTheme
 
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(navController: NavHostController = rememberNavController()) {
     Scaffold(
         bottomBar = { BottomBar(navController = navController) }
     ) {
-        HomeNavGraph(navController = navController)
+        Box(modifier = Modifier.padding(it)) {
+            HomeNavGraph(navController = navController)
+        }
     }
 }
 
@@ -76,4 +81,20 @@ fun RowScope.AddItem(
             }
         }
     )
+}
+
+@Preview
+@Composable
+fun BottomBarScreenPreview() {
+    BugfarmTheme() {
+        BottomBar(rememberNavController())
+    }
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun HomeScreenPreview() {
+    BugfarmTheme() {
+        HomeScreen(rememberNavController())
+    }
 }

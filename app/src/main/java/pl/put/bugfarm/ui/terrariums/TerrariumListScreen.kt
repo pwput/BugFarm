@@ -25,37 +25,43 @@ fun TerrariumListScreen(
     onAddClick: () -> Unit,
     terrariumList: List<Speciment> = listOf<Speciment>()
 ) {
-    Column(
-        modifier = Modifier
-            .background(MaterialTheme.colors.surface)
-            .wrapContentSize(Alignment.Center)
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+    Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(onClick = { onAddClick() }) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_baseline_add_24),
+                    contentDescription = "add_new_speciment_button",
+                    modifier = Modifier
+                        .height(24.dp)
+                        .width(24.dp)
+                )
+            }
+        }) {
+        Column(
+            modifier = Modifier
+                .background(MaterialTheme.colors.surface)
+                .wrapContentSize(Alignment.Center)
+                .padding(it)
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement =Arrangement.Center
 
-    ) {
-        FloatingActionButton(onClick = { onAddClick() }) {
-            Image(
-                painter = painterResource(id = pl.put.bugfarm.R.drawable.ic_baseline_add_24),
-                contentDescription = "add_new_speciment_button",
-                modifier = Modifier
-                    .height(24.dp)
-                    .width(24.dp)
+        ) {
+
+            Text(
+                text = "Terrarium List View",
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colors.error,
+                textAlign = TextAlign.Center,
+                fontSize = 25.sp,
             )
         }
-        Text(
-            text = "Terrarium List View",
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colors.error,
-            textAlign = TextAlign.Center,
-            fontSize = 25.sp
-        )
     }
 }
 
 @Preview(showSystemUi = true)
 @Composable
-fun TerrariuListPreview(){
+fun TerrariuListPreview() {
     BugfarmTheme() {
         TerrariumListScreen(onAddClick = { /*TODO*/ })
     }

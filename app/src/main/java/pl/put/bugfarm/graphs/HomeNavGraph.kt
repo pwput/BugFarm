@@ -49,11 +49,11 @@ fun NavGraphBuilder.spiecesNavGraph(navController: NavHostController) {
         }
         composable(route = SpiecesScreen.Information.route) {
             SpecimentInfoScreen(onChangeClick =
-            { navController.popBackStack(route = SpiecesScreen.List.route, inclusive = false) })
+            { navController.popBackStack(route = BottomBarScreen.Spieces.route, inclusive = false) })
         }
         composable(route = SpiecesScreen.Add.route) {
             SpecimentAddScreen(onAddClick =
-                { navController.popBackStack(route = SpiecesScreen.List.route, inclusive = false) })
+                { navController.popBackStack(route = BottomBarScreen.Spieces.route, inclusive = false) })
         }
     }
 
@@ -69,7 +69,7 @@ fun NavGraphBuilder.terrariaNavGraph(navController: NavHostController) {
             navController.navigate(BottomBarScreen.Terraria.route)
         }
         composable(route = TerrariaScreen.Add.route){
-            TerrariumAddScreen(onAddClick = {navController.popBackStack(route = TerrariaScreen.List.route, inclusive = false)})
+            TerrariumAddScreen(onAddClick = {navController.popBackStack(route = BottomBarScreen.Terraria.route, inclusive = false)})
         }
     }
 }

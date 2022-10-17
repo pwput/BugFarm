@@ -22,7 +22,9 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import pl.put.bugfarm.ui.theme.BugfarmTheme
 
 @Composable
 fun LoginScreen(
@@ -101,4 +103,14 @@ fun onloginButtonClick(login: String, password: String): Boolean {
     if (login == "11" && password == "1111")
         return true
     return false
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun LoginScreenPreview(){
+    BugfarmTheme() {
+        LoginScreen(onLogInClick = { }) {
+            
+        }
+    }
 }
