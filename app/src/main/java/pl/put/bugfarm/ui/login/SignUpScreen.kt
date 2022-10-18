@@ -23,9 +23,12 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun SignUpScreen(
+    viewModel: SignUpViewModel = hiltViewModel(),
+    onSignUpClick: ()->Unit
 ) {
     val focusManager = LocalFocusManager.current
     Surface(modifier = Modifier
@@ -39,8 +42,6 @@ fun SignUpScreen(
                 .background(MaterialTheme.colors.surface)
                 .wrapContentSize(Alignment.Center)
                 .padding(16.dp)
-
-
         ) {
             val loginTextState = remember { mutableStateOf(TextFieldValue(text = "11")) }
             val passwordTextState = remember { mutableStateOf(TextFieldValue(text = "1111")) }
@@ -78,6 +79,11 @@ fun SignUpScreen(
                 singleLine = true,
                 visualTransformation = PasswordVisualTransformation()
             )
+            OutlinedButton(onClick = {
+                viewModel.signUp(loginTextState.value.text,passwordTextState.value.text)
+                onSignUpClick() }) {
+                Text(text = "SignUp")
+            }
 
         }
     }

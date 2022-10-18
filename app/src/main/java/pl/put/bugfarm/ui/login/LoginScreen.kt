@@ -11,9 +11,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,10 +22,13 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import pl.put.bugfarm.ui.theme.BugfarmTheme
 
 @Composable
 fun LoginScreen(
+    viewModel: LoginViewModel = hiltViewModel(),
     onLogInClick: () -> Unit,
     onSignUpClick: () -> Unit
 ) {
@@ -47,6 +48,13 @@ fun LoginScreen(
 
 
         ) {
+            if (viewModel.isLogged.value){
+                Log.d("signed IN","signed")
+                LaunchedEffect(Unit) {
+                    onLogInClick()
+                }
+
+            }
             val loginTextState = remember { mutableStateOf(TextFieldValue(text = "11")) }
             val passwordTextState = remember { mutableStateOf(TextFieldValue(text = "1111")) }
             val message = remember { mutableStateOf("") }
@@ -84,13 +92,12 @@ fun LoginScreen(
                 visualTransformation = PasswordVisualTransformation()
             )
             TextButton(onClick = {
-                message.value = ""
-                if (onloginButtonClick(loginTextState.value.text, passwordTextState.value.text)) {
-                    onLogInClick.invoke()
-                } else
-                    message.value = "Podaj prowidłowy login i hasło"
+                viewModel.validateUser(loginTextState.value.text,passwordTextState.value.text)
             }, modifier = modif) {
                 Text(text = "Login")
+            }
+            OutlinedButton(onClick = {onSignUpClick()}) {
+                Text(text = "SignUp")
             }
 
         }
@@ -98,19 +105,11 @@ fun LoginScreen(
 
 }
 
-fun onloginButtonClick(login: String, password: String): Boolean {
-    Log.d("Login", "$login, $password")
-    if (login == "11" && password == "1111")
-        return true
-    return false
-}
-
 @Preview(showSystemUi = true)
 @Composable
 fun LoginScreenPreview(){
     BugfarmTheme() {
         LoginScreen(onLogInClick = { }) {
-            
         }
     }
 }
